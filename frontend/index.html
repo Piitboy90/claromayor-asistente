@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClaroMayor - Asistente para Mayores</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    
+    <!-- CABECERA: Identifica la app claramente -->
+    <header class="cabecera">
+      <h1 class="titulo">📖 ClaroMayor</h1>
+      <p class="subtitulo">Su asistente para entender el lenguaje oficial</p>
+    </header>
+
+    <!-- SECCIÓN PREGUNTA: Donde el usuario escribe -->
+    <section class="seccion-pregunta" aria-label="Hacer una pregunta">
+      
+      <label for="pregunta" class="etiqueta">
+        ¿Qué palabra o frase no entiende?
+      </label>
+
+      <textarea 
+        id="pregunta" 
+        class="campo-pregunta"
+        placeholder="Por ejemplo: ¿Qué es una transferencia SEPA?"
+        rows="3"
+        autofocus
+        aria-required="true"
+      ></textarea>
+
+      <button 
+        id="boton-preguntar" 
+        class="boton-principal"
+        aria-label="Enviar pregunta para recibir explicación">
+        💬 PREGUNTAR
+      </button>
+
+    </section>
+
+    <!-- SECCIÓN ESTADO: Mensajes de carga y errores -->
+    <section class="seccion-estado" aria-live="polite">
+      
+      <div id="cargando" class="cargando" style="display:none;">
+        ⏳ Pensando su respuesta...
+      </div>
+
+      <div id="error" class="mensaje-error" style="display:none;" role="alert"></div>
+
+    </section>
+
+    <!-- SECCIÓN RESPUESTA: Donde aparece la explicación -->
+    <section id="seccion-respuesta" class="seccion-respuesta" style="display:none;" aria-label="Respuesta">
+      
+      <h2 class="titulo-respuesta">💡 Le explico:</h2>
+      
+      <p id="respuesta" class="texto-respuesta"></p>
+
+      <button 
+        id="boton-nueva-pregunta" 
+        class="boton-secundario"
+        aria-label="Hacer una pregunta nueva">
+        🔄 Hacer otra pregunta
+      </button>
+
+    </section>
+
+    <!-- AYUDA: Ejemplos para guiar al usuario -->
+    <section class="seccion-ayuda" aria-label="Ejemplos de preguntas">
+      <h3 class="titulo-ayuda">💭 Ejemplos de preguntas:</h3>
+      <ul class="lista-ejemplos">
+        <li>¿Qué significa "comisión de mantenimiento"?</li>
+        <li>¿Qué es un certificado digital?</li>
+        <li>¿Para qué sirve la receta electrónica?</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
