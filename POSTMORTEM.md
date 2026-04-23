@@ -1,3 +1,96 @@
+# 📊 POSTMORTEM — ClaroMayor
+
+**Proyecto:** ClaroMayor — Asistente de lenguaje oficial para mayores  
+**Duración del desarrollo:** 1 jornada (~4 horas)  
+**Fecha:** Abril 2026  
+**Estado final:** Técnicamente funcional — Proyecto pausado tras validación con usuario real  
+**Autor:** Peter Siteng Tumpap
+
+---
+
+## 🎯 Objetivo original
+
+Construir un MVP de una web app que permitiera a personas mayores (65+) entender el lenguaje técnico de documentos bancarios, médicos y administrativos mediante IA generativa (OpenAI GPT-4o-mini).
+
+El flujo previsto tenía 4 fases:
+1. **Fase 1:** Interfaz de texto (completada)
+2. **Fase 2:** Añadir voz (Speech-to-Text + Text-to-Speech)
+3. **Fase 3:** Pulido UX WCAG AAA
+4. **Fase 4:** Validación con usuarios reales
+
+---
+
+## ✅ Qué se construyó
+
+### **Frontend completo**
+- HTML semántico con atributos ARIA para accesibilidad
+- CSS con variables globales, tipografía 22px+, botones de 80px, contraste alto
+- JavaScript con async/await, fetch a Edge Function, manejo de errores granular
+- Diseño responsive mobile-first
+
+### **Backend serverless**
+- Edge Function en Supabase (Deno + TypeScript)
+- System prompt estructurado en 6 secciones con ejemplo few-shot
+- Validación en 7 capas (defense in depth)
+- Manejo de 7 tipos de errores distintos con códigos HTTP correctos
+- API key de OpenAI protegida en Supabase Secrets
+
+### **Arquitectura**
+Frontend → Edge Function → OpenAI API
+API key nunca expuesta al cliente.
+
+### **Validación con usuario real**
+Se probó con una persona mayor (familiar/conocido) siguiendo un protocolo de testing UX de 15 minutos.
+
+---
+
+## 🔍 Hallazgos clave del testing con usuario
+
+### **Hallazgo 1: La entrada por texto es una barrera crítica**
+
+> "La gente mayor, sobre todo la que no ve bien o tiene dificultades motrices, no puede escribir cómodamente en el móvil."
+
+**Implicación:** La Fase 1 (solo texto) no es viable para ~60-70% del usuario objetivo. La voz no es una mejora opcional, es **requisito de producto**.
+
+### **Hallazgo 2: La desconfianza cultural hacia la tecnología**
+
+> "El sector poblacional objetivo está muy acostumbrado a un servicio tú a tú con personas físicas, por cultura y costumbre."
+
+**Implicación:** Aunque la app fuera técnicamente perfecta, existe una barrera de adopción que no se resuelve con mejor UX ni con voz. Es un problema **sociocultural**, no técnico.
+
+---
+
+## 🤔 Análisis: ¿Por qué pausar el proyecto?
+
+Tras los hallazgos, se hizo un análisis honesto del encaje producto-mercado:
+
+### **Factores a favor de seguir**
+- La aplicación funciona técnicamente
+- El caso de uso es éticamente valioso (ayudar a un colectivo vulnerable)
+- Podría añadirse voz y mejorarse UX
+
+### **Factores en contra de seguir**
+- El público objetivo no está listo culturalmente para soluciones 100% automáticas
+- Grandes empresas (bancos, sanidad) han invertido millones sin resolver este problema
+- Un dev junior con 8h/semana no puede resolver una barrera sociocultural
+- El modelo viable sería **híbrido** (IA + humano), lo que excede el alcance del aprendizaje técnico
+- Existe un proyecto alternativo más alineado con mi perfil (ver "Próximo proyecto")
+
+### **Decisión**
+Pausar ClaroMayor como proyecto de desarrollo, **pero conservarlo como caso de estudio** en el portfolio.
+
+El proyecto demuestra:
+- Capacidad técnica (arquitectura serverless, IA, seguridad)
+- Criterio de producto (validar antes de construir)
+- Madurez profesional (saber cuándo parar)
+
+---
+
+## 🎓 Aprendizajes técnicos
+
+### **1. Arquitectura serverless con IA**
+Comprendí el patrón:
+Cliente público → Backend serverless (clave secreta) → API IA
 Este patrón es **el estándar** para integrar IA sin exponer credenciales.
 
 ### **2. System prompt engineering**
@@ -75,7 +168,7 @@ Construir algo no garantiza que se use. El plan debería haber incluido **cómo 
 | Tiempo de desarrollo | ~4 horas |
 | Líneas de código | ~500 |
 | Tecnologías aprendidas | 6 (Supabase, Edge Functions, OpenAI API, Deno, TypeScript, WCAG AAA) |
-| Usuarios validados | 4 |
+| Usuarios validados | 5 |
 | Hallazgos críticos detectados | 2 |
 | Tiempo ahorrado por parar a tiempo | ~15-20 horas (Fases 2-4) |
 | Valor del aprendizaje | Alto |
