@@ -1,0 +1,311 @@
+/* ============================================
+   CLAROMAYOR - Estilos accesibles para mayores
+   ============================================
+   Diseñado siguiendo principios WCAG AAA
+   - Tipografía mínima 22px
+   - Botones mínimo 60px de alto
+   - Contraste alto (negro sobre blanco)
+   - Espaciado generoso
+   ============================================ */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   VARIABLES GLOBALES
+   ============================================
+   Centralizamos colores y tamaños.
+   Si mañana cambiamos el azul, solo lo cambiamos aquí.
+*/
+:root {
+  /* Colores - ALTO CONTRASTE para mayores */
+  --color-fondo: #FFFFFF;
+  --color-texto-principal: #000000;
+  --color-texto-secundario: #333333;
+  --color-acento: #1976D2;
+  --color-acento-hover: #1565C0;
+  --color-secundario: #4CAF50;
+  --color-secundario-hover: #388E3C;
+  --color-error: #D32F2F;
+  --color-error-fondo: #FFEBEE;
+  --color-borde: #BDBDBD;
+  --color-fondo-suave: #F5F5F5;
+  
+  /* Tipografía - GRANDE para mayores */
+  --fuente-base: 'Arial', 'Helvetica', sans-serif;
+  --tamano-base: 22px;
+  --tamano-titulo: 36px;
+  --tamano-subtitulo: 24px;
+  --tamano-boton: 26px;
+  
+  /* Espaciado generoso */
+  --espacio-pequeno: 12px;
+  --espacio-medio: 24px;
+  --espacio-grande: 40px;
+  
+  /* Bordes redondeados visibles */
+  --radio-borde: 16px;
+  
+  /* Sombras suaves para profundidad */
+  --sombra-suave: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --sombra-fuerte: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   BODY - Fondo limpio y centrado
+   ============================================
+*/
+body {
+  font-family: var(--fuente-base);
+  font-size: var(--tamano-base);
+  line-height: 1.6;
+  color: var(--color-texto-principal);
+  background-color: var(--color-fondo);
+  min-height: 100vh;
+  padding: var(--espacio-medio);
+}
+
+/* ============================================
+   APP - Contenedor principal
+   ============================================
+*/
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--espacio-medio);
+}
+
+/* ============================================
+   CABECERA
+   ============================================
+*/
+.cabecera {
+  text-align: center;
+  margin-bottom: var(--espacio-grande);
+  padding: var(--espacio-medio);
+  border-bottom: 3px solid var(--color-acento);
+}
+
+.titulo {
+  font-size: var(--tamano-titulo);
+  color: var(--color-acento);
+  margin-bottom: var(--espacio-pequeno);
+  font-weight: bold;
+}
+
+.subtitulo {
+  font-size: var(--tamano-subtitulo);
+  color: var(--color-texto-secundario);
+  font-weight: normal;
+}
+
+/* ============================================
+   SECCIÓN PREGUNTA
+   ============================================
+*/
+.seccion-pregunta {
+  background-color: var(--color-fondo-suave);
+  padding: var(--espacio-grande);
+  border-radius: var(--radio-borde);
+  margin-bottom: var(--espacio-medio);
+  box-shadow: var(--sombra-suave);
+}
+
+.etiqueta {
+  display: block;
+  font-size: var(--tamano-subtitulo);
+  font-weight: bold;
+  margin-bottom: var(--espacio-medio);
+  color: var(--color-texto-principal);
+}
+
+.campo-pregunta {
+  width: 100%;
+  font-family: var(--fuente-base);
+  font-size: var(--tamano-base);
+  padding: var(--espacio-medio);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  resize: vertical;
+  min-height: 100px;
+  background-color: white;
+  color: var(--color-texto-principal);
+  line-height: 1.5;
+  margin-bottom: var(--espacio-medio);
+  transition: border-color 0.2s;
+}
+
+.campo-pregunta:focus {
+  outline: none;
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.2);
+}
+
+.campo-pregunta::placeholder {
+  color: #999;
+  font-size: var(--tamano-base);
+}
+
+/* ============================================
+   BOTONES - GIGANTES y CLAROS
+   ============================================
+*/
+.boton-principal,
+.boton-secundario {
+  width: 100%;
+  font-family: var(--fuente-base);
+  font-size: var(--tamano-boton);
+  font-weight: bold;
+  padding: 24px;
+  border: none;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 80px;
+  letter-spacing: 0.5px;
+}
+
+.boton-principal {
+  background-color: var(--color-acento);
+  color: white;
+  box-shadow: var(--sombra-fuerte);
+}
+
+.boton-principal:hover {
+  background-color: var(--color-acento-hover);
+}
+
+.boton-principal:active {
+  transform: scale(0.98);
+}
+
+.boton-principal:disabled {
+  background-color: var(--color-borde);
+  cursor: not-allowed;
+}
+
+.boton-secundario {
+  background-color: var(--color-secundario);
+  color: white;
+  margin-top: var(--espacio-medio);
+}
+
+.boton-secundario:hover {
+  background-color: var(--color-secundario-hover);
+}
+
+.boton-secundario:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   ESTADO: Cargando y Errores
+   ============================================
+*/
+.cargando {
+  text-align: center;
+  font-size: var(--tamano-subtitulo);
+  color: var(--color-acento);
+  padding: var(--espacio-medio);
+  margin-bottom: var(--espacio-medio);
+  background-color: var(--color-fondo-suave);
+  border-radius: var(--radio-borde);
+  border: 2px dashed var(--color-acento);
+}
+
+.mensaje-error {
+  background-color: var(--color-error-fondo);
+  color: var(--color-error);
+  padding: var(--espacio-medio);
+  border-radius: var(--radio-borde);
+  border-left: 6px solid var(--color-error);
+  margin-bottom: var(--espacio-medio);
+  font-size: var(--tamano-base);
+  font-weight: bold;
+}
+
+/* ============================================
+   SECCIÓN RESPUESTA - Lo más importante
+   ============================================
+*/
+.seccion-respuesta {
+  background-color: #E3F2FD;
+  padding: var(--espacio-grande);
+  border-radius: var(--radio-borde);
+  border-left: 8px solid var(--color-acento);
+  margin-bottom: var(--espacio-medio);
+  box-shadow: var(--sombra-suave);
+}
+
+.titulo-respuesta {
+  font-size: var(--tamano-subtitulo);
+  color: var(--color-acento);
+  margin-bottom: var(--espacio-medio);
+  font-weight: bold;
+}
+
+.texto-respuesta {
+  font-size: var(--tamano-base);
+  line-height: 1.8;
+  color: var(--color-texto-principal);
+  margin-bottom: var(--espacio-medio);
+}
+
+/* ============================================
+   SECCIÓN AYUDA - Ejemplos
+   ============================================
+*/
+.seccion-ayuda {
+  background-color: var(--color-fondo-suave);
+  padding: var(--espacio-medio);
+  border-radius: var(--radio-borde);
+  margin-top: var(--espacio-grande);
+}
+
+.titulo-ayuda {
+  font-size: var(--tamano-subtitulo);
+  color: var(--color-texto-principal);
+  margin-bottom: var(--espacio-medio);
+}
+
+.lista-ejemplos {
+  list-style-position: inside;
+  font-size: var(--tamano-base);
+  line-height: 2;
+  color: var(--color-texto-secundario);
+}
+
+.lista-ejemplos li {
+  padding: var(--espacio-pequeno);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.lista-ejemplos li:last-child {
+  border-bottom: none;
+}
+
+/* ============================================
+   RESPONSIVE - Adaptación a móvil
+   ============================================
+*/
+@media (max-width: 600px) {
+  :root {
+    --tamano-base: 20px;
+    --tamano-titulo: 30px;
+    --tamano-subtitulo: 22px;
+    --tamano-boton: 24px;
+  }
+  
+  .app {
+    padding: var(--espacio-pequeno);
+  }
+  
+  .seccion-pregunta,
+  .seccion-respuesta {
+    padding: var(--espacio-medio);
+  }
+}
